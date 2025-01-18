@@ -27,3 +27,5 @@ tar xzf ./actions-runner-linux-x64-2.321.0.tar.gz
 ## Config
 
 private sunner mostly configured with ahell script, the script **CANNOT** run wuth sudo, so we must create a runner user for it.
+
+### Create runner-user
