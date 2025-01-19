@@ -6,6 +6,24 @@ Source:
 
 [Adding self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/managing-self-hosted-runners/adding-self-hosted-runners)
 
+## User setting
+
+private sunner mostly configured with ahell script, the script **CANNOT** run wuth sudo, so we must create a runner user for it.
+
+### Create runner-user
+
+```cmd
+# create user
+sudo useradd -m github_runner
+sudo passwd github_runner
+
+# setup folder
+sudo mkdir actions-runner
+sudo chown github_runner:github_runner /data/actions-runner
+
+su - github_runner
+```
+
 ## Install
 
 ```bash
@@ -23,9 +41,3 @@ tar xzf ./actions-runner-linux-x64-2.321.0.tar.gz
 ```
 
 ---
-
-## Config
-
-private sunner mostly configured with ahell script, the script **CANNOT** run wuth sudo, so we must create a runner user for it.
-
-### Create runner-user
