@@ -26,6 +26,8 @@ su - github_runner
 
 ## Install
 
+### Download
+
 ```bash
 # Create a folder
 mkdir actions-runner && cd actions-runner
@@ -40,4 +42,12 @@ echo "ba46ba7ce3a4d7236b16fbe44419fb453bc08f866b24f04d549ec89f1722a29e  actions-
 tar xzf ./actions-runner-linux-x64-2.321.0.tar.gz
 ```
 
----
+### Configure
+
+```bash
+# Create the runner and start the configuration experience
+# 這個 token 就在 github page 上
+./config.sh --url https://github.com/Rough-for-Rough --token {token}
+# Last step, run it!
+./run.sh
+```
