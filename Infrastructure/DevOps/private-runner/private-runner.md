@@ -51,3 +51,59 @@ tar xzf ./actions-runner-linux-x64-2.321.0.tar.gz
 # Last step, run it!
 ./run.sh
 ```
+
+## Test
+
+```yml
+name: Maven Verify on Commit
+
+on:
+  push:
+    branches:
+      - main # 或指定其他分支
+
+jobs:
+  maven-verify:
+    runs-on: [self-hosted, rstar] # 替換為你的 Private Runner 標籤
+
+    steps:
+      # 檢出專案程式碼
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 設定 Java 環境（替換成你的 Java 版本）
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin" # 指定 JDK 分發版本（Adoptium 提供的 OpenJDK）
+          cache: "maven" # 啟用 Maven 依賴快取
+
+      # 執行 Maven Verify 和 Package
+      - name: Build and Package JAR
+        run: |
+          mvn verify
+          mvn package
+
+      # 移動 JAR 檔案到目標資料夾
+      - name: Move JAR to Target Folder
+        run: |
+          mkdir -p /data/runner-data/rstar
+          mv target/*.jar /data/runner-data/rstar/
+```
+
+## SonarQube
+
+在首頁點選 Add Project，選擇 Manual。
+
+制定 Project Key 和 Token，後續將生成的 Script 加到 pipeline 內。
+
+```yml
+# 透過 Maven 執行 SonarQube 分析
+- name: Run SonarQube analysis
+  run: |
+    mvn verify sonar:sonar \
+      -Dsonar.projectKey=pipeline-test \
+      -Dsonar.host.url=http://192.168.1.200:9000 \
+      -Dsonar.login={token}
+```
