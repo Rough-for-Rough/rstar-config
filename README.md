@@ -23,4 +23,10 @@ Rstar include:
 
 ## Pipeline
 
-set up token
+Rstar 使用 private runner, pipeline 的流程為
+
+1. check out Bom 專案
+2. install bom
+3. check out core 專案
+4. build core 專案
+5.
