@@ -29,4 +29,4 @@ Rstar 使用 private runner, pipeline 的流程為
 2. install bom
 3. check out core 專案
 4. build core 專案
-5.
+5. run unit test
