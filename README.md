@@ -29,7 +29,8 @@ Rstar 使用 private runner, pipeline 的流程為
 2. install bom
 3. check out core 專案
 4. build core 專案
-5. run unit test
-6. upload to SonarQube
-7. dependency track upload
-8. store jar file
+5. check out B 專案
+6. run unit test
+7. upload to SonarQube
+8. dependency track upload
+9. store jar file
